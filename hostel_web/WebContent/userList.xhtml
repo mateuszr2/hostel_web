@@ -11,6 +11,12 @@
 	<title>Lista użytkowników</title>
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
+		
+		<ui:insert name="menu">
+			<div id="menu" class="box bottom-space">
+				<ui:include src="/templates/menu-snippet.xhtml" />
+			</div>
+		</ui:insert>
 
 	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
 		style="margin-bottom: 1em;">
@@ -83,6 +89,13 @@
 
 		</p:dataTable>
 	</h:form>
+	
+		<ui:insert name="footer">
+			<div id="footer" class="box bottom-space">
+				<ui:include src="/templates/footer-snippet.xhtml" />
+			</div>
+		</ui:insert>
+
 
 </h:body>
 </html>
