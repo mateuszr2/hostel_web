@@ -16,3 +16,19 @@ html, body {
   clear:both; 
   height:29px;
 }
+#map {
+  
+  left:10px;
+}
+#text {
+  position: relative; 
+  left:630px;
+  bottom: 450px;
+  width:600px
+}
+#nagrody {
+  position: relative; 
+ 
+  bottom: 200px;
+  
+}

@@ -11,7 +11,7 @@
 	<title>strona główna</title>
 	<h:outputStylesheet name="css/gallery.css" library="template" />
 	<h:outputStylesheet name="css/viewstyle.css" library="template" />
-	<h:outputScript name="galleryJS.js" library="script"/>
+	
 	
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
@@ -34,7 +34,7 @@
   <div class="mySlides fade">
     <div class="numbertext">1 / 3</div>
     <h:graphicImage name="hotel1.jpg" library="images" />
-    <div class="text">Caption Text</div>
+    <div class="text">LuxHotel</div>
   </div>
  <div class="mySlides fade">
     <div class="numbertext">1 / 3</div>
@@ -60,8 +60,44 @@
   <span class="dot" onclick="currentSlide(2)"></span>
   <span class="dot" onclick="currentSlide(3)"></span>
 </div>
-	
+	<h:outputScript name="galleryJS.js" library="script"/>
 	</h:form>
+	<h3 style="margin-top:0">Udogodnienia</h3>
+	<p:tabView>
+        <p:tab title="Wi-Fi  ">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                <h:outputText
+                    value="Bezpłatne Wi-Fi dostępne na terenie całego obiektu." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Sejfy">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Sejfy we wszystkich pokojach" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Transfer">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="Organizacja transferów lotniskowych" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Basen">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="Odkryty basen na dachu budynku (otwarty tylko w sezonie letnim)" />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+    
+<h:form> 
+  <p:growl id="growl" life="2000" />
+     
+		<p:commandButton value="Przeglądaj pokoje" id="nonAjax" action="#{buttonView.buttonAction}" style="left:40em;top:5em;width:150px; height:50px" ajax="false" />
+ 
+</h:form>
+     
 	</div>
 	<div id="push"></div>
 	</div>

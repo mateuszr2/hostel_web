@@ -43,7 +43,7 @@
 /* Caption text */
 .text {
   color: #f2f2f2;
-  font-size: 15px;
+  font-size: 150px;
   padding: 8px 12px;
   position: absolute;
   bottom: 8px;
@@ -79,9 +79,11 @@
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 1.0s;
+  -webkit-animation-fill-mode: forwards; 
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1.0s;
+  animation-fill-mode: forwards; 
 }
 
 @-webkit-keyframes fade {

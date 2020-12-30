@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>strona główna</title>
+	<h:outputStylesheet name="css/gallery.css" library="template" />
+	<h:outputStylesheet name="css/viewstyle.css" library="template" />
+	
+	
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+		<div id="container">
+		<div id="header">
+		<ui:insert name="menu">
+			<div id="menu" class="box bottom-space">
+				<ui:include src="/templates/menu-snippet.xhtml" />
+			</div>
+		</ui:insert>
+		</div>
+<div id="content">
+<h:form>
+
+		
+<div id="map">	
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d637.1761064029708!2d19.13477248016398!3d50.29744505837779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDE3JzUxLjciTiAxOcKwMDgnMDUuNiJF!5e0!3m2!1spl!2spl!4v1609341464929!5m2!1spl!2spl" 
+width="600" height="450" frameborder="2" style="border:2;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
+<div id="text">
+<h:form id="form">  
+    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+ 
+    <h3 style="margin-top:0">Kontakt</h3>
+    <p:accordionPanel style="margin-top:20px">
+        <p:tab title="Recepcja">
+            <h:panelGrid columns="2" cellpadding="10">
+            <h:outputText value="tel: 756347856 " />
+                    <br>
+                    <h:outputText value=" e-mail: recepcja@luxhotel.pl" />
+                    </br>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Wsparcie techniczne">
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:outputText value="tel: 756347855" />
+                <br>
+                <h:outputText value="e-mail: wspracie@luxhotel.pl" /> 
+                </br>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Maketing i propozycje współpracy">
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:outputText value="tel: 756347854" />
+                 <br>
+                <h:outputText value=" e-mail: marketing@luxhotel.pl" />
+                </br>
+            </h:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+ </h:form>
+    
+    </div>
+
+    <div id="nagrody">
+ 
+    <p:fieldset legend="Nagroda tripadvisor" style="margin-bottom:2px">
+        <h:panelGrid columns="2" cellpadding="5">
+           <h:graphicImage name="nagroda1.jpg" library="images" />
+            <h:outputText
+                value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                but given to ruthless violence whenever anything stands against the good of the family." />
+        </h:panelGrid>
+    </p:fieldset>
+    <p:fieldset legend="Nagdroda Tophotel" style="margin-bottom:2px">
+        <h:panelGrid columns="2" cellpadding="5">
+           <h:graphicImage name="nagroda2.jpg" library="images" />
+            <h:outputText
+                value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                His beloved son Michael has just come home from the wars, but does not intend to become part of his father's business.
+                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                but given to ruthless violence whenever anything stands against the good of the family." />
+        </h:panelGrid>
+    </p:fieldset>
+     <p:fieldset legend="Nagroda laur konsumenta 2020" style="margin-bottom:2px">
+        <h:panelGrid columns="2" cellpadding="5">
+           <h:graphicImage name="nagroda3.jpg" library="images" />
+            <h:outputText
+                value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                His beloved son Michael has just come home from the wsar, but does not intend to become part of his father's business.
+                Through Michael's life the nature of ssthe family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                but given to ruthless violence whenever anything stands against the good of the family." />
+        </h:panelGrid>
+    </p:fieldset>
+	</div>
+	</h:form>
+	</div>
+	<div id="push"></div>
+	</div>
+	<div id="footer">
+		<ui:insert name="footer">
+			<div id="footer" class="box bottom-space">
+				<ui:include src="/templates/footer-snippet.xhtml" />
+			</div>
+		</ui:insert>
+	</div>
+
+</h:body>
+</html>
