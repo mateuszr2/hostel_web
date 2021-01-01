@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{roomEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>Lista użytkowników</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{roomEditBB.room != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="p-roomNo" value="numer pokoju:" />
+				<p:inputText id="p-roomNo" value="#{roomEditBB.room.roomNo}"
+					required="true" requiredMessage="Podaj numer pokoju"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-roomNo" display="icon"/>
+
+				<h:outputLabel for="p-price" value="cena za noc:" />
+				<p:inputText id="p-price" value="#{roomEditBB.room.price}"
+					required="true" requiredMessage="podaj cene"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="p-price" display="icon"/>
+	
+			<h:outputLabel for="p-type" value="typ:" />
+			<p:selectOneMenu id="console" value="#{roomEditBB.room.type}" style="width:125px">
+           			<f:selectItem itemLabel="wybierz" itemValue="" />
+            		<f:selectItem itemLabel="Single" itemValue="Single" />
+           			<f:selectItem itemLabel="Double" itemValue="Double" />
+           			<f:selectItem itemLabel="Studio" itemValue="Studio" />
+          			<f:facet name="footer">
+            		 <h:outputText value="3 consoles" style="font-weight:bold;"/>
+          			</f:facet>
+      		 </p:selectOneMenu>
+      		   <br>
+			  <h:outputLabel for="p-description" value="opis:" />
+			  <p:inputTextarea id="p-description" value="#{roomEditBB.room.description}" rows="5" cols="30" counter="display" maxlength="1000" counterTemplate="pozostało znaków: {0}" autoResize="false" />
+    			<h:outputText id="display" />
+    			 </br>
+		
+		
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{roomEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="roomsList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

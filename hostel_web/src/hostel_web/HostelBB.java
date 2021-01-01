@@ -25,7 +25,7 @@ public class HostelBB {
 	private static final String PAGE_USER_LIST = "userList.xhtml";
 	private static final String PAGE_LOGIN = "login?faces-redirect=true";
 	private static final String PAGE_REGISTRATION = "registration?faces-redirect=true";
-	
+	private static final String PAGE_ROOMS_LIST = "roomsList.xhtml";
 
 	public String homePage() {
 		return PAGE_HOME;
@@ -42,7 +42,9 @@ public class HostelBB {
 	public String registrationPage() {
 		return PAGE_REGISTRATION;
 	}
-	
+	public String roomsListPage() {
+		return PAGE_ROOMS_LIST;
+	}
 	
 
 }
