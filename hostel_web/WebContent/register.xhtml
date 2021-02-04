@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+   <title>Rejestracja</title>
+   
+   
+   <h:outputStylesheet name="css/login-page.css" library="template" />
+</h:head>
+
+<h:body>
+   <div class="login-container login-bg">
+      <div class="ui-g">
+         <div class="ui-xl-3 ui-lg-3 ui-md-4 ui-sm-12" style="margin: 0 auto">
+            <div class="login-component">
+               <h:form id="login-form">
+               <p:growl id="growl" showDetail="true" sticky="true" />  
+                  <div class="ui-g ui-fluid">
+                  	<h:graphicImage library="images" name="logo.jpg" align="middle" styleClass="logoImg"/>
+					
+					<div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                           <p:inputText id="login" placeholder="Login" value="#{egisterBB.register}"/>
+                        </div>
+                     </div>
+                     
+                     <div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                           <p:password id="pass" placeholder="Hasło" value="#{egisterBB.register}"/>
+                        </div>
+                     </div>
+                     
+					<div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                           <p:inputText id="name" placeholder="imie i nazwisko" value="#{registerBB.register}"/>
+                        </div>
+                     </div>
+                     
+               <div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                               	
+				<p:selectOneMenu id="console" value="#{registerBB.register}">
+           			<f:selectItem itemLabel="Kraj" itemValue="" />
+            		<f:selectItem itemLabel="Polska" itemValue="Polska" />
+           			<f:selectItem itemLabel="Niemcy" itemValue="Niemcy" />
+           			<f:selectItem itemLabel="Francja" itemValue="Francja" />
+           			<f:selectItem itemLabel="Norwegia" itemValue="Norwegia" />
+           			<f:selectItem itemLabel="Czechy" itemValue="Czechy" />
+           			<f:selectItem itemLabel="Słowacja" itemValue="Słowacja" />
+           			<f:selectItem itemLabel="Ukraina" itemValue="Ukraina" />
+           			<f:selectItem itemLabel="Rosja" itemValue="Rosja" />
+           			<f:selectItem itemLabel="Białoruś" itemValue="Białoruś" />
+           			<f:selectItem itemLabel="Portugalia" itemValue="Portugalia" />
+           			<f:selectItem itemLabel="Norwegia" itemValue="Norwegia" />
+          			<f:facet name="footer">
+            		 <h:outputText value="3 consoles" style="font-weight:bold;"/>
+          			</f:facet>
+      		 </p:selectOneMenu>
+                        </div>
+                     </div>
+					<div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                           <p:inputText id="phone" placeholder="telefon" value="#{registerBB.register}"/>
+                        </div>
+                     </div>
+                     <div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                           <p:inputText id="email" placeholder="email" value="#{registerBB.register}"/>
+                        </div>
+                     </div>
+
+                     <div class="ui-g-12 ui-md-12">
+                        <p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="@form"/>
+                     </div>
+
+                  </div>
+               </h:form>
+            </div>
+         </div>
+      </div>
+   </div>
+</h:body>
+</html>

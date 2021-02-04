@@ -1,0 +1,67 @@
+body, html{
+    padding: 0px !important;
+    margin: 0px !important;
+    background: rgb(252,252,252) !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 13px !important;
+}
+
+.login-bg{
+   
+
+    background: #c0c0c0;
+   
+   
+    
+
+    
+
+}
+
+.login-container{
+    height: 100%;
+
+}
+
+.login-component{
+    margin-top: 10vh;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid rgb(220,220,220);
+    border-radius: 5px;
+}
+
+img.logoImg{
+	width: 250px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+#login-form > div > div{
+    padding-bottom: 15px;
+}
+
+input{
+    padding: 10px !important;
+}
+
+button{
+    padding: 6px !important;
+}
+
+.ui-button{
+	background-color: #0AC59D !important;
+	border-color: #0AC59D !important;
+}
+
+.ui-paginator-pages .ui-paginator-page{
+background: none;
+background-color:#cccccc;
+}
+.ui-paginator-pages .ui-state-active{
+background-color: white;
+}
+.ui-paginator-pages .ui-state-hover{
+background-color: red;
+}

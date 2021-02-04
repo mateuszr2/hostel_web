@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jsf.dao.UserDAO;
 import jpa_entities.User;
-
+import jpa_entities.Role;
 @Named
 @RequestScoped
 public class UserListBB {
@@ -41,9 +41,7 @@ public class UserListBB {
 		this.name = name;
 	}
 
-	public List<User> getFullList(){
-		return userDAO.getFullList();
-	}
+
 
 	public List<User> getList(){
 		List<User> list = null;
