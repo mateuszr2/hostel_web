@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>strona główna</title>
+	<h:outputStylesheet name="css/gallery.css" library="template" />
+	<h:outputStylesheet name="css/viewstyle.css" library="template" />
+	
+	
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+		<div id="container">
+		<div id="header">
+		<ui:insert name="menu">
+			<div id="menu" class="box bottom-space">
+				<ui:include src="/templates/menu-snippet-public.xhtml" />
+			</div>
+		</ui:insert>
+		</div>
+<div id="content">
+<h:form>
+
+		
+		
+<div class="slideshow-container">
+
+
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <h:graphicImage name="hotel1.jpg" library="images" />
+    <div class="text">LuxHotel</div>
+  </div>
+ <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <h:graphicImage name="hotel 2.jpg" library="images" />
+    <div class="text">Caption Text</div>
+  </div>
+   <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <h:graphicImage name="hotel 3.jpg" library="images" />
+    <div class="text">Caption Text</div>
+  </div>
+ 
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+</br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+	<h:outputScript name="galleryJS.js" library="script"/>
+	</h:form>
+	<h3 style="margin-top:0">Udogodnienia</h3>
+	<p:tabView>
+        <p:tab title="Wi-Fi  ">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                <h:outputText
+                    value="Bezpłatne Wi-Fi dostępne na terenie całego obiektu." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Sejfy">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Sejfy we wszystkich pokojach" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Transfer">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="Organizacja transferów lotniskowych" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Basen">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="Odkryty basen na dachu budynku (otwarty tylko w sezonie letnim)" />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+    
+<h:form> 
+  <p:growl id="growl" life="2000" />
+     
+		<p:commandButton value="Przeglądaj pokoje" id="nonAjax" action="#{buttonView.buttonAction}" style="left:40em;top:5em;width:150px; height:50px" ajax="false" />
+ 
+</h:form>
+     
+	</div>
+	<div id="push"></div>
+	</div>
+	<div id="footer">
+		<ui:insert name="footer">
+			<div id="footer" class="box bottom-space">
+				<ui:include src="/templates/footer-snippet.xhtml" />
+			</div>
+		</ui:insert>
+	</div>
+
+</h:body>
+</html>

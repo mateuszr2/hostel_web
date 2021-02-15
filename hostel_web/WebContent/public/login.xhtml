@@ -22,19 +22,19 @@
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="login" placeholder="Login" value="#{loginBB.login}"/>
+                           <p:inputText id="login" placeholder="Login" value="#{loginBB.user.login}"/>
                         </div>
                      </div>
 
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                           <p:password id="pass" placeholder="Hasło" value="#{loginBB.pass}"/>
+                           <p:password id="password" placeholder="Hasło" value="#{loginBB.user.password}"/>
                         </div>
                      </div>
 
                      <div class="ui-g-12 ui-md-12">
-                        <p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="@form"/>
+                        <p:commandButton value="Zaloguj" id="ajax" action="#{loginBB.login()}" update="@form"/>
                      </div>
 
                   </div>

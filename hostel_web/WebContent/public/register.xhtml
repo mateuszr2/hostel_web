@@ -22,21 +22,28 @@
 					<div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="login" placeholder="Login" value="#{egisterBB.register}"/>
+                           <p:inputText id="login" placeholder="Login" value="#{registerBB.user.login}"/>
                         </div>
                      </div>
                      
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                           <p:password id="pass" placeholder="Hasło" value="#{egisterBB.register}"/>
+                           <p:password id="password" placeholder="Hasło" value="#{registerBB.user.password}"/>
                         </div>
                      </div>
                      
+                     <div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                           <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                           <p:password id="powtorz_password" placeholder="Powtórz hasło" value="#{registerBB.confPass}"/>
+                        </div>
+                     </div>
+                       
 					<div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="name" placeholder="imie i nazwisko" value="#{registerBB.register}"/>
+                           <p:inputText id="name" placeholder="imie i nazwisko" value="#{registerBB.user.name}"/>
                         </div>
                      </div>
                      
@@ -44,7 +51,7 @@
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
                                	
-				<p:selectOneMenu id="console" value="#{registerBB.register}">
+				<p:selectOneMenu id="console" value="#{registerBB.user.country}">
            			<f:selectItem itemLabel="Kraj" itemValue="" />
             		<f:selectItem itemLabel="Polska" itemValue="Polska" />
            			<f:selectItem itemLabel="Niemcy" itemValue="Niemcy" />
@@ -66,19 +73,28 @@
 					<div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="phone" placeholder="telefon" value="#{registerBB.register}"/>
+                           <p:inputText id="mobile" placeholder="telefon" value="#{registerBB.user.mobile}"/>
                         </div>
                      </div>
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="email" placeholder="email" value="#{registerBB.register}"/>
+                           <p:inputText id="email" placeholder="email" value="#{registerBB.user.email}"/>
                         </div>
                      </div>
 
                      <div class="ui-g-12 ui-md-12">
-                        <p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="@form"/>
+                        <p:commandButton value="Zarejestruj" action="#{registerBB.register_AJAX()}" update="@form"/>
                      </div>
+                     <h:form>
+                     <div class="ui-g-12 ui-md-12">
+                     
+                     <a href="#{hostelBB.LoginLinkRegistration()}">Strona logowania</a>
+                    
+           		 		
+       					
+                     </div>
+                     </h:form>
 
                   </div>
                </h:form>

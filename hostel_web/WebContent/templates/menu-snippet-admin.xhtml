@@ -25,12 +25,12 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#{hostelBB.homePage()}">Strona główna <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#{hostelBB.homePageAdmin()}">Strona główna <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#{hostelBB.about_usPage()}" >O nas</a>
+                <a class="nav-link" href="#{hostelBB.about_us_adminPage()}" >O nas</a>
             </li>
-           
+          
            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opcje</a>
@@ -40,14 +40,21 @@
                     <li> <a class="dropdown-item" href="#{hostelBB.userListPage()}" >zarządzaj użytkownikami</a></li>
 				</ul>
                </li>
+                 <li class="nav-item">
+               <h:form> <a class="nav-link"><h:outputText value="Zalogowany jako:#{remoteClient.details.name} Rola: #{remoteClient.details.role.name}" /></a></h:form>
+            </li>
              </ul>
-                
+             
+           
+            
             
         
-        <form class="form-inline mt-2 mt-md-0">
+        <h:form class="form-inline mt-2 mt-md-0">
             
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">zaloguj</button>
-        </form>
+          <h:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" />
+            
+           
+        </h:form>
     </div>
 </div>
 

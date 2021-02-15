@@ -16,11 +16,11 @@
 		<div id="header">
 		<ui:insert name="menu">
 			<div id="menu" class="box bottom-space">
-				<ui:include src="/templates/menu-snippet.xhtml" />
+				<ui:include src="/templates/menu-snippet-user.xhtml" />
 			</div>
 		</ui:insert>
 		</div>
-		<h3>Zarządzanie pokojami</h3>
+		<h3>Przeglądaj pokoje</h3>
 		<center>
 		<h:form>
 		
@@ -47,12 +47,7 @@
 
 		<p:dataTable value="#{roomsListBB.list}" var="p">
 
-			<p:column priority="5">
-				<f:facet name="header">
-					<h:outputText value="numer pokoju" />
-				</f:facet>
-				<h:outputText value="#{p.roomNo}" />
-			</p:column>
+			
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="zdjęcie" />
@@ -84,7 +79,7 @@
  
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="opcje" />
+					<h:outputText value="Wybierz" />
 				</f:facet>
 
 				<p:commandButton value="Edytuj"

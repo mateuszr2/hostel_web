@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>Lista pokoi</title>
+	<h:outputStylesheet name="css/viewstyle.css" library="template" />
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+		<div id="container">
+		<div id="header">
+		<ui:insert name="menu">
+			<div id="menu" class="box bottom-space">
+				<ui:include src="/templates/menu-snippet-admin.xhtml" />
+			</div>
+		</ui:insert>
+		</div>
+		<h3>Zarządzanie pokojami</h3>
+		<center>
+		<h:form>
+		
+		
+<div >
+        <div >
+          
+            <p:inputText value="#{roomsListBB.type}" placeholder="typ pokoju" />
+           
+            <p:commandButton icon="pi pi-search" value="Szukaj" update="form-table" styleClass="white-button"/>  
+            
+        </div>
+    </div>
+   
+   </h:form>
+   </center>
+ <p:messages />
+ <br>
+</br>
+	<h:form id="form-table" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nowy pokój"
+			action="#{roomsListBB.newRoom()}" style="margin-bottom:1em;"/>
+
+		<p:dataTable value="#{roomsListBB.list}" var="p">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="numer pokoju" />
+				</f:facet>
+				<h:outputText value="#{p.roomNo}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="zdjęcie" />
+				</f:facet>
+				<h:outputText value="#{p.image}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="cena za noc" />
+				</f:facet>
+				<h:outputText value="#{p.price}" />
+			</p:column>
+
+		  <p:column>
+				<f:facet name="header">
+					<h:outputText value="opis" />
+				</f:facet>
+				<h:outputText value="#{p.description}" />
+			</p:column> 
+			
+		
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="typ" />
+				</f:facet>
+				<h:outputText value="#{p.type}" />
+			</p:column>
+ 
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{roomsListBB.editRoom(p)}" />
+
+				<p:commandButton value="Usuń"
+					action="#{roomsListBB.deleteRoom(p)}" update="@form" />
+
+				
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+	<div id="push"></div>
+	</div>
+	<div id="footer">
+		<ui:insert name="footer">
+			<div id="footer" class="box bottom-space">
+				<ui:include src="/templates/footer-snippet.xhtml" />
+			</div>
+		</ui:insert>
+</div>
+
+</h:body>
+</html>

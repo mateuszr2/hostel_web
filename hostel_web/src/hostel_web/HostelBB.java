@@ -20,24 +20,49 @@ public class HostelBB {
 
 	@EJB
 	UserDAO userDAO;
+	private static final String PAGE_HOME_PUBLIC = "../home.xhtml";
+	private static final String PAGE_HOME_PUBLIC_ADMIN = "../admin/home.xhtml";
+	private static final String PAGE_HOME_PUBLIC_USER = "../user/home.xhtml";
 	private static final String PAGE_HOME = "home.xhtml";
-	private static final String PAGE_ABOUT_US = "about_us.xhtml";
+	private static final String PAGE_ABOUT_US = "public/about_us.xhtml";
+	private static final String PAGE_ABOUT_US_ADMIN = "about_us.xhtml";
+	private static final String PAGE_ABOUT_US_USER = "about_us.xhtml";
 	private static final String PAGE_USER_LIST = "userList.xhtml";
-	private static final String PAGE_LOGIN = "login?faces-redirect=true";
-	private static final String PAGE_REGISTRATION = "registration?faces-redirect=true";
+	private static final String LOGIN_PAGE = "public/login.xhtml";
+	private static final String LOGIN_LINK_REGISTRATION = "../public/login.xhtml";
+	private static final String PAGE_REGISTRATION = "public/register.xhtml";
 	private static final String PAGE_ROOMS_LIST = "roomsList.xhtml";
+	
 
 	public String homePage() {
 		return PAGE_HOME;
 	}
+	public String homePagePublic() {
+		return PAGE_HOME_PUBLIC;
+	}
+	public String homePageAdmin() {
+		return PAGE_HOME_PUBLIC_ADMIN;
+	}
+	public String homePageUser() {
+		return PAGE_HOME_PUBLIC_USER;
+	}
 	public String about_usPage() {
 		return PAGE_ABOUT_US;
+	}
+	public String about_us_adminPage() {
+		return PAGE_ABOUT_US_ADMIN;
+	}
+	public String about_us_userPage() {
+		return PAGE_ABOUT_US_USER;
 	}
 	public String userListPage() {
 		return PAGE_USER_LIST;
 	}
-	public String loginPage() {
-		return PAGE_LOGIN;
+	public String LoginPage() {
+		return LOGIN_PAGE;
+	}
+	public String LoginLinkRegistration() {
+		return LOGIN_LINK_REGISTRATION;
 	}
 	public String registrationPage() {
 		return PAGE_REGISTRATION;
