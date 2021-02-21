@@ -1,4 +1,4 @@
-package com.jsfproject.user;
+package com.jsfproject.menage_booking;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,19 +13,17 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.servlet.http.HttpSession;
 
-import com.jsf.dao.UserDAO;
-import jpa_entities.User;
-import jpa_entities.Role;
-import jpa_entities.Room;
+import com.jsf.dao.BookingDAO;
+import jpa_entities.RoomBooking;
+
 @Named
 @RequestScoped
-public class UserListBB {
-	private static final String PAGE_USER_EDIT = "userEdit?faces-redirect=true";
-	private static final String PAGE_USER_ADD = "userAdd?faces-redirect=true";
+public class BookingListBB {
+	private static final String PAGE_BOOKING_EDIT = "bookingEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private String name;
-		
+	private String type;
+	private int bookingId;
 	@Inject
 	ExternalContext extcontext;
 	
@@ -33,58 +31,61 @@ public class UserListBB {
 	Flash flash;
 	
 	@EJB
-	UserDAO userDAO;
+	BookingDAO bookingDAO;
 		
-	public String getName() {
-		return name;
+
+	public int getBookingId() {
+		return bookingId;
+	}
+	
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public List<RoomBooking> getFullList(){
+		return bookingDAO.getFullList();
 	}
 
-	public List<User> getList(){
-		List<User> list = null;
+	public List<RoomBooking> getList(){
+		List<RoomBooking> list = null;
 		
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
-		if (name != null && name.length() > 0){
-			searchParams.put("name", name);
-		}
+	
 		
 		//2. Get list
-		list = userDAO.getList(searchParams);
+		list = bookingDAO.getList(searchParams);
 		
 		return list;
 	}
 
-	public String newUser(){
-		User user = new User();
+	public String newRoomBooking(){
+		RoomBooking roombooking = new RoomBooking();
 		
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash	
-		flash.put("user", user);
+		flash.put("roombooking", roombooking);
 		
-		return PAGE_USER_ADD;
+		return PAGE_BOOKING_EDIT;
 	}
 
-	public String editUser(User user){
+	public String editRoomBooking(RoomBooking roombooking){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash 
-		flash.put("user", user);
+		flash.put("roombooking", roombooking);
 		
-		return PAGE_USER_EDIT;
+		return PAGE_BOOKING_EDIT;
 	}
 
-	public String deleteUser(User user){
-		userDAO.remove(user);
+	public String deleteRoomBooking(RoomBooking roombooking){
+		bookingDAO.remove(roombooking);
 		return PAGE_STAY_AT_THE_SAME;
 	}
 }

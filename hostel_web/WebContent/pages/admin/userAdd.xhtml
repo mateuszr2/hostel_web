@@ -17,7 +17,7 @@
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
-	<p:panel toggleable="true" header="Edycja użytkownika">
+	<p:panel toggleable="true" header="Dodawanie administratora">
 
 		<h:form rendered="#{userEditBB.user != null}">
 			<h:panelGrid columns="3" cellpadding="5">
@@ -32,6 +32,14 @@
 				<p:message for="p-login" display="icon"/>
 				
 				
+				<h:outputLabel for="p-password" value="hasło:" />
+				<p:password id="p-password" value="#{userEditBB.user.password}"
+					required="true" requiredMessage="Podaj hasło"
+					validatorMessage="Hasło musi sładac się z minimum 8 znaków (duża i mała litera oraz cyfra)">
+					<f:validateRegex
+							pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" />
+				</p:password>
+				<p:message for="p-password" display="icon"/>
 				
 				<h:outputLabel for="p-name" value="imię i nazwisko:" />
 				<p:inputText id="p-name" value="#{userEditBB.user.name}"

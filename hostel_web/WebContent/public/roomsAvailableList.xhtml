@@ -10,17 +10,20 @@
 	<meta charset="utf-8"/>
 	<title>Lista pokoi</title>
 	<h:outputStylesheet name="css/viewstyle.css" library="template" />
+	<h:outputStylesheet name="css/calendar.css" library="template" />
+	<h:outputScript name="calendar.js" library="script"/>
 </h:head>
+
 <h:body style="background-color: #eee; margin: 0.5em;">
 		<div id="container">
 		<div id="header">
 		<ui:insert name="menu">
 			<div id="menu" class="box bottom-space">
-				<ui:include src="/templates/menu-snippet-user.xhtml" />
+				<ui:include src="/templates/menu-snippet-admin.xhtml" />
 			</div>
 		</ui:insert>
 		</div>
-		<h3>Przeglądaj pokoje</h3>
+		<h3>Zarządzanie pokojami</h3>
 		<center>
 		<h:form>
 		
@@ -28,7 +31,7 @@
 <div >
         <div >
           
-            <p:inputText value="#{RoomsBookingListBB.type}" placeholder="typ pokoju" />
+            <p:inputText value="#{roomsListBB.type}" placeholder="typ pokoju" />
            
             <p:commandButton icon="pi pi-search" value="Szukaj" update="form-table" styleClass="white-button"/>  
             
@@ -43,11 +46,11 @@
 	<h:form id="form-table" style="margin-bottom:1em;">
 
 		<p:commandButton value="Dodaj nowy pokój"
-			action="#{RoomsBookingListBB.newRoom()}" style="margin-bottom:1em;"/>
+			action="#{roomsListBB.newRoom()}" style="margin-bottom:1em;"/>
 
-		<p:dataTable value="#{RoomsBookingListBB.list}" var="p">
+		<p:dataTable value="#{roomsAvailableListBB.list}" var="p" >
 
-			
+		
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="zdjęcie" />
@@ -76,17 +79,16 @@
 				</f:facet>
 				<h:outputText value="#{p.type}" />
 			</p:column>
- 
+			
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Wybierz" />
+					<h:outputText value="opcje" />
 				</f:facet>
 
-				<p:commandButton value="Edytuj"
-					action="#{RoomsBookingListBB.editRoom(p)}" />
+			<p:commandButton value="Rezerwuj"
+					action="#{RoomsAvailableBookingBB.editRoomBooking(p)}" />
 
-				<p:commandButton value="Usuń"
-					action="#{RoomsBookingListBB.deleteRoom(p)}" update="@form" />
+			
 
 				
 			</p:column>
@@ -104,4 +106,5 @@
 </div>
 
 </h:body>
+
 </html>

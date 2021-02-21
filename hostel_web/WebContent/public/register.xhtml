@@ -19,19 +19,36 @@
                   <div class="ui-g ui-fluid">
                   	<h:graphicImage library="images" name="logo.jpg" align="middle" styleClass="logoImg"/>
 					
+					
+					
 					<div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="login" placeholder="Login" value="#{registerBB.user.login}"/>
+                           <p:inputText id="p-login" placeholder="Login" value="#{registerBB.user.login}"
+                           required="true" requiredMessage="Podaj login"
+							validatorMessage="Login może składać się od 3 do 15 znaków">
+                           <f:validateLength minimum="3" maximum="15" />
+                          </p:inputText>
+                          <p:message for="p-login" display="icon"/>
                         </div>
                      </div>
+                     
+                     
                      
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                           <p:password id="password" placeholder="Hasło" value="#{registerBB.user.password}"/>
+                           <p:password id="p-password" placeholder="Hasło" value="#{registerBB.user.password}"
+                           		requiredMessage="Podaj hasło!"
+								validatorMessage="Hasło musi sładac się z minimum 8 znaków (duża i mała litera oraz cyfra)">
+							<f:validateRegex
+							pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" />
+							</p:password>
+							<p:message for="p-password" display="icon"/>
                         </div>
                      </div>
+                     
+                     
                      
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
@@ -39,19 +56,29 @@
                            <p:password id="powtorz_password" placeholder="Powtórz hasło" value="#{registerBB.confPass}"/>
                         </div>
                      </div>
+                     
+                     
                        
 					<div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="name" placeholder="imie i nazwisko" value="#{registerBB.user.name}"/>
+                           <p:inputText id="p-name" placeholder="imie i nazwisko" value="#{registerBB.user.name}"
+                           required="true" requiredMessage="Podaj imię i nazwisko"
+					validatorMessage="Imię i nazwisko może składać się od 3 do 40 znaków">
+					<f:validateLength minimum="3" maximum="40" />
+				</p:inputText>
+				<p:message for="p-name" display="icon"/>
                         </div>
                      </div>
+                     
+                     
                      
                <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
                                	
-				<p:selectOneMenu id="console" value="#{registerBB.user.country}">
+				<p:selectOneMenu id="console" value="#{registerBB.user.country}"
+				required="true" requiredMessage="Wybierz kraj">
            			<f:selectItem itemLabel="Kraj" itemValue="" />
             		<f:selectItem itemLabel="Polska" itemValue="Polska" />
            			<f:selectItem itemLabel="Niemcy" itemValue="Niemcy" />
@@ -68,20 +95,40 @@
             		 <h:outputText value="3 consoles" style="font-weight:bold;"/>
           			</f:facet>
       		 </p:selectOneMenu>
+      		 <p:message for="console" display="icon"/>
                         </div>
                      </div>
 					<div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="mobile" placeholder="telefon" value="#{registerBB.user.mobile}"/>
+                           <p:inputText id="p-mobile" placeholder="telefon" value="#{registerBB.user.mobile}"
+                           required="true" requiredMessage="Podaj telefon"
+					validatorMessage="Telefon może składać się z co najwyżej 14 znaków">
+					<f:validateLength maximum="14" />
+				
+				</p:inputText>
+				<p:message for="p-mobile" display="icon"/>
                         </div>
                      </div>
+                     
+                     
+                     
                      <div class="ui-g-12 ui-md-12">
                         <div class="ui-inputgroup">
                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                           <p:inputText id="email" placeholder="email" value="#{registerBB.user.email}"/>
+                           <p:inputText id="p-email" placeholder="email" value="#{registerBB.user.email}"
+                           		required="true" requiredMessage="Podaj email"
+								validatorMessage="Nieprawidłowy format adresu email">
+								<f:validateLength maximum="100" />
+								<f:validateRegex pattern="^[A-Za-z0-9+_.-]+@(.+)$" />
+							</p:inputText>
+				<p:message for="p-email" display="icon"/>
                         </div>
                      </div>
+                     
+                     
+                     
+                     
 
                      <div class="ui-g-12 ui-md-12">
                         <p:commandButton value="Zarejestruj" action="#{registerBB.register_AJAX()}" update="@form"/>

@@ -9,8 +9,12 @@ import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
+
+import com.jsf.dao.LogDAO;
 import com.jsf.dao.RoleDAO;
 import com.jsf.dao.UserDAO;
+
+import jpa_entities.ActionLog;
 import jpa_entities.User;
 
 @Named
@@ -24,9 +28,12 @@ public class RegisterBB {
 	UserDAO userDAO;
 	@EJB
 	RoleDAO roleDAO;
+	@EJB
+	LogDAO logDAO;
 	private User user = new User();
 	private String confPass;
-
+	private ActionLog actionlog = new ActionLog();
+	
 	public User getUser() {
 		return user;
 	}
@@ -61,6 +68,9 @@ public class RegisterBB {
 			user.setRole(roleDAO.find(3));
 			user.getLogin();
 			user.setRegisterDate(data);
+			actionlog.setLog("rejestracja nowego uzytkownika o loginie: " + user.getLogin());
+			actionlog.setDatetime(data);
+			logDAO.create(actionlog);
 			userDAO.create(user);
 
 			return true;

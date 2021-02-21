@@ -25,21 +25,22 @@
 				<h:outputLabel for="p-roomNo" value="numer pokoju:" />
 				<p:inputText id="p-roomNo" value="#{roomEditBB.room.roomNo}"
 					required="true" requiredMessage="Podaj numer pokoju"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
+					validatorMessage="Podaj co najwyżej 3 znaki">
+					<f:validateLength maximum="3" />
 				</p:inputText>
 				<p:message for="p-roomNo" display="icon"/>
 
 				<h:outputLabel for="p-price" value="cena za noc:" />
 				<p:inputText id="p-price" value="#{roomEditBB.room.price}"
-					required="true" requiredMessage="podaj cene"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
+					required="true" requiredMessage="Podaj cene"
+					validatorMessage="Podaj cenę z przedziału od 0 do 999 ">
+					<f:validateLength maximum="5" />
 				</p:inputText>
 				<p:message for="p-price" display="icon"/>
 	
 			<h:outputLabel for="p-type" value="typ:" />
-			<p:selectOneMenu id="console" value="#{roomEditBB.room.type}" style="width:125px">
+			<p:selectOneMenu id="console" value="#{roomEditBB.room.type}" style="width:125px"
+			required="true" requiredMessage="Wybierz rodzaj pokoju">
            			<f:selectItem itemLabel="wybierz" itemValue="" />
             		<f:selectItem itemLabel="Single" itemValue="Single" />
            			<f:selectItem itemLabel="Double" itemValue="Double" />
@@ -48,6 +49,7 @@
             		 <h:outputText value="3 consoles" style="font-weight:bold;"/>
           			</f:facet>
       		 </p:selectOneMenu>
+      		 
       		   <br>
 			  <h:outputLabel for="p-description" value="opis:" />
 			  <p:inputTextarea id="p-description" value="#{roomEditBB.room.description}" rows="5" cols="30" counter="display" maxlength="1000" counterTemplate="pozostało znaków: {0}" autoResize="false" />

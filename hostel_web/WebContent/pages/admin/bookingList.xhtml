@@ -8,7 +8,7 @@
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Lista pokoi</title>
+	<title>Lista rezerwacji</title>
 	<h:outputStylesheet name="css/viewstyle.css" library="template" />
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
@@ -16,11 +16,11 @@
 		<div id="header">
 		<ui:insert name="menu">
 			<div id="menu" class="box bottom-space">
-				<ui:include src="/templates/menu-snippet-user.xhtml" />
+				<ui:include src="/templates/menu-snippet-admin.xhtml" />
 			</div>
 		</ui:insert>
 		</div>
-		<h3>Przeglądaj pokoje</h3>
+		<h3>Zarządzanie rezerwacjami</h3>
 		<center>
 		<h:form>
 		
@@ -28,7 +28,7 @@
 <div >
         <div >
           
-            <p:inputText value="#{RoomsBookingListBB.type}" placeholder="typ pokoju" />
+            <p:inputText value="#{BookingListBB.checkOutDate}" placeholder="typ pokoju" />
            
             <p:commandButton icon="pi pi-search" value="Szukaj" update="form-table" styleClass="white-button"/>  
             
@@ -42,57 +42,57 @@
 </br>
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nowy pokój"
-			action="#{RoomsBookingListBB.newRoom()}" style="margin-bottom:1em;"/>
+		
 
-		<p:dataTable value="#{RoomsBookingListBB.list}" var="p">
+		<p:dataTable value="#{bookingListBB.list}" var="p">
 
-			
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="data rozpoczęcia" />
+				</f:facet>
+				<h:outputText value="#{p.checkInDate}" />
+			</p:column>
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="zdjęcie" />
+					<h:outputText value="data zakończenia" />
 				</f:facet>
-				<h:outputText value="#{p.image}" />
+				<h:outputText value="#{p.checkOutDate}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="cena za noc" />
+					<h:outputText value="użytkownik" />
 				</f:facet>
-				<h:outputText value="#{p.price}" />
+				<h:outputText value="#{p.user.name}" />
 			</p:column>
 
 		  <p:column>
 				<f:facet name="header">
-					<h:outputText value="opis" />
+					<h:outputText value="pokój" />
 				</f:facet>
-				<h:outputText value="#{p.description}" />
+				<h:outputText value="#{p.room.roomNo}" />
 			</p:column> 
 			
 		
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="typ" />
-				</f:facet>
-				<h:outputText value="#{p.type}" />
-			</p:column>
+			
  
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Wybierz" />
+					<h:outputText value="opcje" />
 				</f:facet>
 
 				<p:commandButton value="Edytuj"
-					action="#{RoomsBookingListBB.editRoom(p)}" />
+					action="#{bookingListBB.editRoomBooking(p)}" />
 
 				<p:commandButton value="Usuń"
-					action="#{RoomsBookingListBB.deleteRoom(p)}" update="@form" />
+					action="#{bookingListBB.deleteRoomBooking(p)}" update="@form" />
 
 				
 			</p:column>
 
 		</p:dataTable>
 	</h:form>
+
 	<div id="push"></div>
 	</div>
 	<div id="footer">

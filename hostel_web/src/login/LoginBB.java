@@ -1,5 +1,7 @@
 package login;
 
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -9,7 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import com.jsf.dao.UserDAO;
+import com.jsf.dao.LogDAO;
 import jpa_entities.User;
+import jpa_entities.ActionLog;
 import javax.servlet.http.HttpServletRequest;
 
 @Named
@@ -21,13 +25,20 @@ public class LoginBB {
 
 	@EJB
 	UserDAO userDAO;
+	@EJB
+	LogDAO logDAO;
+	
 	private static final String PAGE_LOGIN = "/public/login?faces-redirect=true";
 	private static final String PAGE_ADMIN_EDIT = "/pages/admin/home?faces-redirect=true";
 	private static final String HOME_ADMIN = "/pages/admin/home?faces-redirect=true";
 	private static final String HOME_USER = "/pages/user/home?faces-redirect=true";
 	private static final String PAGE_HOME_PUBLIC = "/public/home?faces-redirect=true";
 	private User user = new User();
+	private User userr = new User();
 	private User userLogin;
+	private ActionLog actionlog = new ActionLog();
+	
+	
 
 	public User getUser() {
 		return user;
@@ -58,7 +69,7 @@ public class LoginBB {
 
 			RemoteClient<User> client = new RemoteClient<User>(); // create new RemoteClient
 			client.setDetails(this.userLogin);
-
+			
 			String role = userLogin.getRole().getName(); // get User roles
 
 			if (role != null) { // save roles names in RemoteClient
@@ -70,8 +81,14 @@ public class LoginBB {
 			client.store(request);
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Zalogowano", null));
 			String x = "user";
+			Date data = new Date();
+			actionlog.setLog("Udana próba logowania u¿ytkownika: " + user.getLogin());
+			actionlog.setDatetime(data);
+			logDAO.create(actionlog);
+		
 			if(role.equals(x))
 			{
+				
 				return HOME_USER;
 			}
 			else
@@ -81,6 +98,10 @@ public class LoginBB {
 			// and enter the system (now SecurityFilter will pass the request)
 		} else {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Niepoprawny login lub has³o", null));
+			Date data = new Date();
+			actionlog.setDatetime(data);
+			actionlog.setLog("Nieudana próba logowania u¿ytkownika :" + user.getLogin());
+			logDAO.create(actionlog);
 			return null;
 		}
 	}
