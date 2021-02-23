@@ -46,14 +46,14 @@ public class UserListBB {
 	public List<User> getList(){
 		List<User> list = null;
 		
-		//1. Prepare search params
+	
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
 		if (name != null && name.length() > 0){
 			searchParams.put("name", name);
 		}
 		
-		//2. Get list
+		
 		list = userDAO.getList(searchParams);
 		
 		return list;
@@ -62,22 +62,14 @@ public class UserListBB {
 	public String newUser(){
 		User user = new User();
 		
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
 		
-		//2. Pass object through flash	
 		flash.put("user", user);
 		
 		return PAGE_USER_ADD;
 	}
 
 	public String editUser(User user){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
 		
-		//2. Pass object through flash 
 		flash.put("user", user);
 		
 		return PAGE_USER_EDIT;

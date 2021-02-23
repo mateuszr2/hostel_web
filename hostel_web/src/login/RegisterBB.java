@@ -9,6 +9,7 @@ import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
+import java.util.List;
 
 import com.jsf.dao.LogDAO;
 import com.jsf.dao.RoleDAO;
@@ -53,6 +54,12 @@ public class RegisterBB {
 	public String registerPage() {
 		return PAGE_REGISTER_EDIT;
 	}
+	
+	public boolean validateUser(User user) {
+		List<User> duplicates = userDAO.searchForDuplicate(user.getLogin(), user.getEmail());
+		if(duplicates.isEmpty() || duplicates == null) return true;
+		else return false;
+	}
 
 	public boolean confirmData() {
 		try {
@@ -63,6 +70,7 @@ public class RegisterBB {
 				errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
 				throw new ValidatorException(errorMessage);
 			}
+			if(validateUser(user)) {
 			Date data = new Date();
 			user.setPassword(pa.hash(user.getPassword().toCharArray()));
 			user.setRole(roleDAO.find(3));
@@ -74,7 +82,11 @@ public class RegisterBB {
 			userDAO.create(user);
 
 			return true;
-
+			}
+			else {
+				ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Nie uda³o siê utworzyæ uzytkownika: login lub email wystêpuj¹ w systemie", null));
+			}
 		} catch (ValidatorException e) {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), null));
 			return false;
@@ -83,6 +95,7 @@ public class RegisterBB {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d przetwarzania danych", null));
 			return false;
 		}
+		return false;
 	}
 
 	public String register_AJAX() {

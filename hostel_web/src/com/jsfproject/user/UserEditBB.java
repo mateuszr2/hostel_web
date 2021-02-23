@@ -51,30 +51,23 @@ public class UserEditBB implements Serializable {
 	}
 	
 	public void onLoad() throws IOException {
-		// 1. load person passed through session
-		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		// loaded = (Person) session.getAttribute("person");
-
-		// 2. load person passed through flash
+	
 		loaded = (User) flash.get("user");
 		
 
-		// cleaning: attribute received => delete it from session
+	
 		if (loaded != null) {
 			user = loaded;
-			// session.removeAttribute("person");
+			
 		} else {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "BÅ‚Ä™dne uÅ¼ycie systemu", null));
-			// if (!context.isPostback()) { //possible redirect
-			// context.getExternalContext().redirect("personList.xhtml");
-			// context.responseComplete();
-			// }
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Niedozwolona operacja", null));
+			
 		}
 
 	}
 
 	public String saveData() {
-		// no Person object passed
+		
 		session = (HttpSession) context.getExternalContext().getSession(false);
 		User admin = (User) session.getAttribute("user");
 		if (loaded == null) {
@@ -83,7 +76,7 @@ public class UserEditBB implements Serializable {
 
 		try {
 			if (user.getUserId() == null) {
-				// new record
+				
 				
 				PasswordEncode pa = new PasswordEncode();
 				user.setPassword(pa.hash(user.getPassword().toCharArray()));
@@ -96,7 +89,7 @@ public class UserEditBB implements Serializable {
 				logDAO.create(actionlog);
 				
 			} else {
-				// existing record
+				
 				userDAO.merge(user);
 				Date data = new Date();
 				actionlog.setLog("u¿ytkownik o loginie: "+ user.getLogin()+" zosta³ zedytowany");
@@ -107,7 +100,7 @@ public class UserEditBB implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "wystÄ…piÅ‚ bÅ‚Ä…d podczas zapisu", null));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d podczas zapisu", null));
 			return PAGE_STAY_AT_THE_SAME;
 		}
 

@@ -40,39 +40,32 @@ public class RoomEditBB implements Serializable {
 	}
 
 	public void onLoad() throws IOException {
-		// 1. load person passed through session
-		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		// loaded = (Person) session.getAttribute("person");
-
-		// 2. load person passed through flash
+	
 		loaded = (Room) flash.get("room");
 
-		// cleaning: attribute received => delete it from session
+		
 		if (loaded != null) {
 			room = loaded;
-			// session.removeAttribute("person");
+		
 		} else {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nieprawid³owa opracja", null));
-			// if (!context.isPostback()) { //possible redirect
-			// context.getExternalContext().redirect("personList.xhtml");
-			// context.responseComplete();
-			// }
+			
 		}
 
 	}
 
 	public String saveData() {
-		// no Person object passed
+		
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
 		try {
 			if (room.getIdRoom() == null) {
-				// new record
+				
 				roomDAO.create(room);
 			} else {
-				// existing record
+				
 				roomDAO.merge(room);
 			}
 		} catch (Exception e) {

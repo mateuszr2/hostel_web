@@ -12,18 +12,18 @@
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Lista użytkowników</title>
+	<title>Rezerwacja pokoju</title>
 </h:head>
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
-	<p:panel toggleable="true" header="Edycja rekordu">
+	<p:panel toggleable="true" header="Rezerwacja pokoju">
 
 		<h:form rendered="#{roomsAvailableBookingBB.room != null}">
 			<h:panelGrid columns="3" cellpadding="5">
 
 				<h:outputLabel for="p-roomNo" value="numer id pokoju:" />
-				<p:inputText id="p-roomNo" value="#{roomsAvailableBookingBB.room.roomId}"
+				<p:inputText id="p-roomNo" value="#{roomsAvailableBookingBB.room.idRoom}"
 					required="true" requiredMessage="Podaj numer pokoju"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
@@ -40,7 +40,7 @@
 			<p:commandButton value="Zapisz" action="#{roomsAvailableBookingBB.saveData()}"
 				style="margin-right: 1em;" update="@form" />
 
-			<p:button value="Anuluj" outcome="roomsList" />
+			<p:button value="Anuluj" outcome="roomsAvailableList" />
 		</h:form>
 
 	</p:panel>

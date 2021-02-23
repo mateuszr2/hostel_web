@@ -8,9 +8,12 @@
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Lista użytkowników</title>
+	<title>Lista pokoi</title>
 	<h:outputStylesheet name="css/viewstyle.css" library="template" />
+	<h:outputStylesheet name="css/calendar.css" library="template" />
+	<h:outputScript name="calendar.js" library="script"/>
 </h:head>
+
 <h:body style="background-color: #eee; margin: 0.5em;">
 		<div id="container">
 		<div id="header">
@@ -20,8 +23,7 @@
 			</div>
 		</ui:insert>
 		</div>
-		<div id="content">
-		<h3>Zarządzanie użytkownikami</h3>
+		<h3>Lista wolnych pokoi</h3>
 		<center>
 		<h:form>
 		
@@ -29,7 +31,7 @@
 <div >
         <div >
           
-            <p:inputText value="#{userListBB.name}" placeholder="imie i nazwisko" />
+            <p:inputText value="#{roomsListBB.type}" placeholder="typ pokoju" />
            
             <p:commandButton icon="pi pi-search" value="Szukaj" update="form-table" styleClass="white-button"/>  
             
@@ -38,74 +40,61 @@
    
    </h:form>
    </center>
-
-	
-
-	<p:messages />
-
+ <p:messages />
+ <br>
+</br>
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nowego admina"
-			action="#{userListBB.newUser()}" style="margin-bottom:1em;"/>
+		<p:commandButton value="Dodaj nowy pokój"
+			action="#{roomsListBB.newRoom()}" style="margin-bottom:1em;"/>
 
-		<p:dataTable value="#{userListBB.list}" var="p">
+		<p:dataTable value="#{roomsAvailableListBB.list}" var="p" >
 
-			<p:column priority="5">
-				<f:facet name="header">
-					<h:outputText value="login" />
-				</f:facet>
-				<h:outputText value="#{p.login}" />
-			</p:column>
+		
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="imię i nazwisko" />
+					<h:outputText value="zdjęcie" />
 				</f:facet>
-				<h:outputText value="#{p.name}" />
+				<h:outputText value="#{p.image}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="kraj" />
+					<h:outputText value="cena za noc" />
 				</f:facet>
-				<h:outputText value="#{p.country}" />
+				<h:outputText value="#{p.price}" />
 			</p:column>
 
+		  <p:column>
+				<f:facet name="header">
+					<h:outputText value="opis" />
+				</f:facet>
+				<h:outputText value="#{p.description}" />
+			</p:column> 
+			
+		
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="email" />
+					<h:outputText value="typ" />
 				</f:facet>
-				<h:outputText value="#{p.email}" />
+				<h:outputText value="#{p.type}" />
 			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="telefon" />
-				</f:facet>
-				<h:outputText value="#{p.mobile}" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="rola" />
-				</f:facet>
-				<h:outputText value="#{p.role.name}" />
-			</p:column>
-
+			
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="opcje" />
 				</f:facet>
 
-				<p:commandButton value="Edytuj"
-					action="#{userListBB.editUser(p)}" />
+			<p:commandButton value="Rezerwuj"
+					action="#{roomsAvailableListBB.nowRoomBooking(p)}" />
 
-				<p:commandButton value="Usuń"
-					action="#{userListBB.deleteUser(p)}" update="@form" />
+			
 
 				
 			</p:column>
 
 		</p:dataTable>
 	</h:form>
-	</div>
 	<div id="push"></div>
 	</div>
 	<div id="footer">
@@ -117,4 +106,5 @@
 </div>
 
 </h:body>
+
 </html>

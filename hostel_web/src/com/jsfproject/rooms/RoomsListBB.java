@@ -48,14 +48,14 @@ public class RoomsListBB {
 	public List<Room> getList(){
 		List<Room> list = null;
 		
-		//1. Prepare search params
+		
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
 		if (type != null && type.length() > 0){
 			searchParams.put("type", type);
 		}
 		
-		//2. Get list
+		
 		list = roomDAO.getList(searchParams);
 		
 		return list;
@@ -64,22 +64,14 @@ public class RoomsListBB {
 	public String newRoom(){
 		Room room = new Room();
 		
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash	
+	
 		flash.put("room", room);
 		
 		return PAGE_ROOM_EDIT;
 	}
 
 	public String editRoom(Room room){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
 		
-		//2. Pass object through flash 
 		flash.put("room", room);
 		
 		return PAGE_ROOM_EDIT;

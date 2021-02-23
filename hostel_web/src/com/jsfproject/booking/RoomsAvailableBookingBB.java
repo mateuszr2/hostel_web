@@ -7,30 +7,38 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.simplesecurity.RemoteClient;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 import com.jsf.dao.RoomDAO;
+import com.jsf.dao.UserDAO;
 import com.jsf.dao.BookingDAO;
 import jpa_entities.Room;
 import jpa_entities.RoomBooking;
+import jpa_entities.User;
+
 @Named
 @ViewScoped
 public class RoomsAvailableBookingBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_ROOMS_LIST = "roomsList?faces-redirect=true";
+	private static final String PAGE_ROOMS_LIST = "roomsAvailableList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private Room room = new Room();
-	private Room loadedd = null;
 	private RoomBooking roombooking = new RoomBooking();
-	private RoomBooking loaded = null;
+	private Room loaded = null;
+	private User user = new User();
+	private User userloaded = null;
 	@EJB
 	RoomDAO roomDAO;
+	@EJB
 	BookingDAO bookingDAO;
+	@EJB
+	UserDAO userDAO;
 	
 	@Inject
 	FacesContext context;
@@ -44,38 +52,43 @@ public class RoomsAvailableBookingBB implements Serializable {
 	public RoomBooking getRoomBooking() {
 		return roombooking;
 	}
+	public User getUser() {
+		return user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public void onLoad() throws IOException {
-		// 1. load person passed through session
-		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		// loaded = (Person) session.getAttribute("person");
 
-		// 2. load person passed through flash
-		loaded = (RoomBooking) flash.get("room");
+		
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		userloaded = (User)RemoteClient.load(session).getDetails();    
+		loaded = (Room) flash.get("room");
 
-		// cleaning: attribute received => delete it from session
+		
 		if (loaded != null) {
-			roombooking = loaded;
-			// session.removeAttribute("person");
+			room = loaded;
+			
 		} else {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nieprawid³owa opracja", null));
-			// if (!context.isPostback()) { //possible redirect
-			// context.getExternalContext().redirect("personList.xhtml");
-			// context.responseComplete();
-			// }
+		
 		}
 
 	}
-
+	
 	public String saveData() {
-		// no Person object passed
-		if (loaded == null) {
-			return PAGE_STAY_AT_THE_SAME;
-		}
-
-		try {
+			try {
 			
-				// new record
+			
+				
+				this.roombooking.setUser(this.user);
+				
+				
+				
+				
+		
+				bookingDAO.create(this.roombooking);
 				bookingDAO.create(roombooking);
 			
 		} catch (Exception e) {
