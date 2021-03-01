@@ -22,7 +22,7 @@ public class BookingListBB {
 	private static final String PAGE_BOOKING_EDIT = "bookingEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private String type;
+	
 	private int bookingId;
 	@Inject
 	ExternalContext extcontext;
@@ -49,12 +49,12 @@ public class BookingListBB {
 	public List<RoomBooking> getList(){
 		List<RoomBooking> list = null;
 		
-		//1. Prepare search params
+	
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
 	
 		
-		//2. Get list
+		
 		list = bookingDAO.getList(searchParams);
 		
 		return list;
@@ -63,20 +63,13 @@ public class BookingListBB {
 	public String newRoomBooking(){
 		RoomBooking roombooking = new RoomBooking();
 		
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
-		
-		//2. Pass object through flash	
 		flash.put("roombooking", roombooking);
 		
 		return PAGE_BOOKING_EDIT;
 	}
 
 	public String editRoomBooking(RoomBooking roombooking){
-		//1. Pass object through session
-		//HttpSession session = (HttpSession) extcontext.getSession(true);
-		//session.setAttribute("person", person);
+		
 		
 		//2. Pass object through flash 
 		flash.put("roombooking", roombooking);

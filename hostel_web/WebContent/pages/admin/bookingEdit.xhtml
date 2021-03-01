@@ -26,12 +26,12 @@
 				
 					
 			<p:outputLabel for="p-checkInDate" value="Data od:"/>
-            <p:calendar id="p-checkInDate" value="#{checkInDate}" showOn="button"
+            <p:calendar id="p-checkInDate" value="#{bookingEditBB.roombooking.checkInDate}" showOn="button"
 			required="true" requiredMessage="Podaj date rozpoczęcia"/>
 			<p:message for="p-checkInDate" display="icon"/>
 
 			<p:outputLabel for="p-checkOutDate" value="Data do:"/>
-            <p:calendar id="p-checkOutDate" value="#{checkOutDate}" showOn="button"
+            <p:calendar id="p-checkOutDate" value="#{bookingEditBB.roombooking.checkOutDate}" showOn="button"
 			required="true" requiredMessage="Podaj date zakończenia"/>
 			<p:message for="p-checkOutDate" display="icon"/>
 

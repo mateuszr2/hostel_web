@@ -19,11 +19,11 @@
 		<div id="header">
 		<ui:insert name="menu">
 			<div id="menu" class="box bottom-space">
-				<ui:include src="/templates/menu-snippet-admin.xhtml" />
+				<ui:include src="/templates/menu-snippet-user.xhtml" />
 			</div>
 		</ui:insert>
 		</div>
-		<h3>Zarządzanie pokojami</h3>
+		<h3>Lista wolnych pokoi</h3>
 		<center>
 		<h:form>
 		
@@ -86,7 +86,7 @@
 				</f:facet>
 
 			<p:commandButton value="Rezerwuj"
-					action="#{RoomsAvailableBookingBB.editRoomBooking(p)}" />
+					action="#{roomsAvailableListBB.nowRoomBooking(p)}" />
 
 			
 

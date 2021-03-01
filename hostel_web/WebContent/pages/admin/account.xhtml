@@ -8,7 +8,7 @@
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Lista pokoi</title>
+	<title>Lista użytkowników</title>
 	<h:outputStylesheet name="css/viewstyle.css" library="template" />
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
@@ -20,79 +20,84 @@
 			</div>
 		</ui:insert>
 		</div>
-		<h3>Przeglądaj pokoje</h3>
+		<div id="content">
+		<h3>Zarządzanie użytkownikami</h3>
 		<center>
 		<h:form>
 		
 		
 <div >
-        <div >
-          
-            <p:inputText value="#{RoomsBookingListBB.type}" placeholder="typ pokoju" />
-           
-            <p:commandButton icon="pi pi-search" value="Szukaj" update="form-table" styleClass="white-button"/>  
-            
-        </div>
+      
     </div>
    
    </h:form>
    </center>
- <p:messages />
- <br>
-</br>
+
+	
+
+	<p:messages />
+
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nowy pokój"
-			action="#{RoomsBookingListBB.newRoom()}" style="margin-bottom:1em;"/>
+	
 
-		<p:dataTable value="#{RoomsBookingListBB.list}" var="p">
+		<p:dataTable value="#{userAccountBB.list}" var="p">
 
-			
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="login" />
+				</f:facet>
+				<h:outputText value="#{p.login}" />
+			</p:column>
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="zdjęcie" />
+					<h:outputText value="imię i nazwisko" />
 				</f:facet>
-				<h:outputText value="#{p.image}" />
+				<h:outputText value="#{p.name}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="cena za noc" />
+					<h:outputText value="kraj" />
 				</f:facet>
-				<h:outputText value="#{p.price}" />
+				<h:outputText value="#{p.country}" />
 			</p:column>
 
-		  <p:column>
-				<f:facet name="header">
-					<h:outputText value="opis" />
-				</f:facet>
-				<h:outputText value="#{p.description}" />
-			</p:column> 
-			
-		
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="typ" />
+					<h:outputText value="email" />
 				</f:facet>
-				<h:outputText value="#{p.type}" />
+				<h:outputText value="#{p.email}" />
 			</p:column>
- 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Wybierz" />
+					<h:outputText value="telefon" />
+				</f:facet>
+				<h:outputText value="#{p.mobile}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="rola" />
+				</f:facet>
+				<h:outputText value="#{p.role.name}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
 				</f:facet>
 
 				<p:commandButton value="Edytuj"
-					action="#{RoomsBookingListBB.editRoom(p)}" />
+					action="#{userAccountBB.editAccount(p)}" />
 
-				<p:commandButton value="Usuń"
-					action="#{RoomsBookingListBB.deleteRoom(p)}" update="@form" />
+				
 
 				
 			</p:column>
 
 		</p:dataTable>
 	</h:form>
+	</div>
 	<div id="push"></div>
 	</div>
 	<div id="footer">

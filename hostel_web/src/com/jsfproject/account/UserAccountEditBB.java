@@ -1,9 +1,8 @@
-package com.jsfproject.booking;
+/*package com.jsfproject.account;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -14,109 +13,86 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-
-import com.jsf.dao.RoomDAO;
+import com.jsf.dao.RoleDAO;
 import com.jsf.dao.UserDAO;
-import com.jsf.dao.BookingDAO;
-import jpa_entities.Room;
-import jpa_entities.RoomBooking;
 import jpa_entities.User;
+import login.PasswordEncode;
+import com.jsf.dao.LogDAO;
+import jpa_entities.ActionLog;
 
 @Named
 @ViewScoped
-public class RoomsAvailableBookingBB implements Serializable {
+public class UserAccountEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_ROOMSLIST = "roomsAvailableList?faces-redirect=true";
+	private static final String PAGE_ACCOUNT = "account?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private Room room = new Room();
-	
-	
-	private Room loaded = null;
-	
 	private User user = new User();
+	private User loaded = null;
+	private HttpSession session;
 	private User userloaded = null;
-	private RoomBooking roombooking = new RoomBooking();
-	
-	@EJB
-	RoomDAO roomDAO;
-	@EJB
-	BookingDAO bookingDAO;
 	@EJB
 	UserDAO userDAO;
-	
-	
-	
+	@EJB
+	RoleDAO roleDAO;
+	@EJB
+	LogDAO logDAO;
 	@Inject
 	FacesContext context;
 
 	@Inject
 	Flash flash;
 
-	
-	
-	public RoomBooking getRoomBooking() {
-		return roombooking;
-	}
-	
-	public Room getRoom() {
-		return room;
-	}
-	
+	private ActionLog actionlog = new ActionLog();
+	private String login;
 	public User getUser() {
 		return user;
 	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public void setRoombooking(RoomBooking roombooking) {
-		this.roombooking = roombooking;
-	}
+	
+	
 	public void onLoad() throws IOException {
-
-		
+	
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		userloaded = (User)RemoteClient.load(session).getDetails();    
-		loaded = (Room) flash.get("room");
 
-		
+	
 		if (loaded != null) {
-			room = loaded;
 			user = userloaded;
-		
-		
+			
 		} else {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nieprawid³owa opracja", null));
-		
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Niedozwolona operacja", null));
+			
 		}
 
 	}
-	
+
 	public String saveData() {
-			try {
-			
-			roombooking.setUser(user);
-			roombooking.setRoom(room);
-			
-			
-				
-				
-				
-				
 		
-			
-				bookingDAO.create(roombooking);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			context.addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d zapisu", null));
+		session = (HttpSession) context.getExternalContext().getSession(false);
+		
+		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		return PAGE_ROOMSLIST;
+		try {
+		
+				
+				userDAO.merge(user);
+				Date data = new Date();
+				actionlog.setLog("user: " + user.getLogin()+" edytowa³ informacje na swoim koncie");
+				actionlog.setDatetime(data);
+				logDAO.create(actionlog);
+				
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			context.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d podczas zapisu", null));
+			return PAGE_STAY_AT_THE_SAME;
+		}
+
+		return PAGE_ACCOUNT;
 	}
 }
+*/

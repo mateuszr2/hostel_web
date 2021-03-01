@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+		<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+		<div class="container-full2">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<a class="navbar-brand" href="http://localhost:8080/tire_store/"><img
+					src="#{resource['template:assets/images/logo.png']}" height="150%"
+					alt="Progressus HTML5 template"></img></a>
+			</div>
+			<br></br>
+					<h:form>
+			<p:menubar
+				style="float:right;color: white;background: rgba(0,0,0,0.5); font-size:20px; border:none;">
+
+				<p:menuitem style="font-size:18px; background-color: #bfbfbf;" value="Home"
+					action="#{loginCtrl.indexPage()}" ajax="false" />
+				<p:submenu style="font-size:18px;" label="Opony">
+					<p:menuitem value="Opony samochodowe" action="#{offerList.offerlistPage()}" ajax="false" />
+					<p:menuitem value="Opony ciężarowe" url="#" />
+				</p:submenu>
+				<p:submenu style="font-size:18px;" label="Moderator">
+					<p:menuitem value="Zamówienia do realizacji" action="#{orderCtrl.ordersManagement()}" ajax="false" />
+					<p:menuitem value="Wszystkie zamówienia" action="#{orderCtrl.ordersManagementAll()}" ajax="false" />
+					<p:menuitem value="Zarządzaj produktami/ofertami" action="#{accountOrders.AccountOrdersPage()}" ajax="false" />
+				</p:submenu>
+				<p:submenu style="font-size:18px;" label="Konto" rendered="#{accountManagement.islogged()}">
+					<p:menuitem value="Ustawienia konta" action="#{accountManagement.accountPage()}" ajax="false" />
+					<p:menuitem value="Moje zamówienia" action="#{accountOrders.AccountOrdersPage()}" ajax="false" />
+				</p:submenu>
+				<p:menuitem style="font-size:18px; color: red;" value="O nas"
+					action="#{offerList.accountPage()}" ajax="false" />
+
+				<f:facet name="options">
+					<p:commandButton value="Zaloguj"
+				action="#{loginCtrl.loginPage()}" icon="pi pi-home" rendered="#{!accountManagement.islogged()}" />
+				<p:commandButton value="Wyloguj"
+				action="#{loginCtrl.doLogout()}" icon="pi pi-home" rendered="#{accountManagement.islogged()}" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+
+		</div>
+
+	</div>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+</ui:composition>

@@ -29,8 +29,19 @@
 					<f:validateLength maximum="40" />
 				</p:inputText>
 				<p:message for="p-roomNo" display="icon"/>
-
-			
+				
+				<h:outputLabel for="p-user" value="numer id użytkownika rezerwującego:" />
+				<p:inputText id="p-user" value="#{roomsAvailableBookingBB.user.userId}">
+				</p:inputText>
+				<p:message for="p-user" display="icon"/>
+				
+				<h:outputLabel for="p-date" value="data rozpoczęcia:" />
+				<p:inputText id="p-date" value="#{roomsAvailableBookingBB.roombooking.checkInDate}"
+					required="true" requiredMessage="podaj datę rozpoczęcia"
+					converterMessage="niepoprawny format daty (np. 15-07-2018)">
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+			    </p:inputText>
+				<p:message for="p-date" display="icon"/>
 		
 		
 			</h:panelGrid>

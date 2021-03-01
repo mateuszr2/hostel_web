@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{roomsAvailableBookingBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>Rezerwacja pokoju</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Rezerwacja pokoju">
+
+		<h:form rendered="#{roomsAvailableBookingBB.room != null}">
+			
+			<h:panelGrid columns="3" cellpadding="5">
+		Rezerwacja pokoju: #{roomsAvailableBookingBB.room.roomNo}
+		
+			<div class="p-field p-col-12 p-md-4">
+                <p:outputLabel for="checkInDate" value="Data rozpoczęcia"/>
+                <p:datePicker id="checkInDate" value="#{roomsAvailableBookingBB.roombooking.checkInDate}"
+                required="true" requiredMessage="Podaj datę rozpoczęcia">
+                </p:datePicker>
+            </div>
+            
+            <div class="p-field p-col-12 p-md-4">
+                <p:outputLabel for="checkOutDate" value="Data zakończenia"/>
+                <p:datePicker id="checkOutDate" value="#{roomsAvailableBookingBB.roombooking.checkOutDate}" 
+                requiredMessage="Podaj datę zakończenia"/>
+            </div>
+			
+		
+	
+		
+		
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{roomsAvailableBookingBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="roomsAvailableList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

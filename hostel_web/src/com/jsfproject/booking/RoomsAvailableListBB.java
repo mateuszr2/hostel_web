@@ -15,11 +15,13 @@ import javax.servlet.http.HttpSession;
 
 import com.jsf.dao.RoomDAO;
 import jpa_entities.Room;
+import com.jsf.dao.BookingDAO;
+import jpa_entities.RoomBooking;
 
 @Named
 @RequestScoped
 public class RoomsAvailableListBB {
-	private static final String PAGE_ROOM_EDIT = "roomBooking?faces-redirect=true";
+	private static final String PAGE_ROOMBOOKING = "roomBooking?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String type;
@@ -32,7 +34,9 @@ public class RoomsAvailableListBB {
 	
 	@EJB
 	RoomDAO roomDAO;
-		
+	@EJB
+	BookingDAO bookingDAO;
+	
 	public String getType() {
 		return type;
 	}
@@ -44,6 +48,7 @@ public class RoomsAvailableListBB {
 	public List<Room> getFullList(){
 		return roomDAO.getFullList();
 	}
+	
 
 	public List<Room> getList(){
 		List<Room> list = null;
@@ -67,11 +72,9 @@ public class RoomsAvailableListBB {
 
 		flash.put("room", room);
 		
-		return PAGE_ROOM_EDIT;
+		
+		return PAGE_ROOMBOOKING;
 	}
+	
 
-	public String deleteRoom(Room room){
-		roomDAO.remove(room);
-		return PAGE_STAY_AT_THE_SAME;
-	}
 }
