@@ -14,7 +14,9 @@ import javax.faces.context.Flash;
 import javax.servlet.http.HttpSession;
 
 import com.jsf.dao.BookingDAO;
+import com.jsf.dao.RoomDAO;
 import jpa_entities.RoomBooking;
+import jpa_entities.Room;
 
 @Named
 @RequestScoped
@@ -32,7 +34,8 @@ public class BookingListBB {
 	
 	@EJB
 	BookingDAO bookingDAO;
-		
+	@EJB
+	RoomDAO roomDAO;
 
 	public int getBookingId() {
 		return bookingId;

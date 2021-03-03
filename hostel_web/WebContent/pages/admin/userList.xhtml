@@ -48,7 +48,7 @@
 		<p:commandButton value="Dodaj nowego admina"
 			action="#{userListBB.newUser()}" style="margin-bottom:1em;"/>
 
-		<p:dataTable value="#{userListBB.list}" var="p">
+		<p:dataTable value="#{userListBB.list}" var="p" paginator="true">
 
 			<p:column priority="5">
 				<f:facet name="header">
@@ -96,7 +96,12 @@
 
 				<p:commandButton value="Edytuj"
 					action="#{userListBB.editUser(p)}" />
-
+					<br> 
+					</br> 
+				<p:commandButton value="Zmień hasło"
+					action="#{userListBB.passwordUserEdit(p)}" />
+					<br> 
+					</br> 
 				<p:commandButton value="Usuń"
 					action="#{userListBB.deleteUser(p)}" update="@form" />
 

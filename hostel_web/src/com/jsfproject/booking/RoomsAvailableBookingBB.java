@@ -53,7 +53,8 @@ public class RoomsAvailableBookingBB implements Serializable {
 
 	@Inject
 	Flash flash;
-
+	@Inject
+	FacesContext ctx;
 	
 	
 	public RoomBooking getRoomBooking() {
@@ -72,6 +73,31 @@ public class RoomsAvailableBookingBB implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	
+	public Date getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+	
+	private Date checkInDate;
+	
+	public Date getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+	
+	private Date checkOutDate;
+	
 	public void setRoombooking(RoomBooking roombooking) {
 		this.roombooking = roombooking;
 	}
@@ -95,20 +121,33 @@ public class RoomsAvailableBookingBB implements Serializable {
 
 	}
 	
+	public boolean validateBooking(RoomBooking roombooking) {
+		List<RoomBooking> duplicates = bookingDAO.searchForDuplicate(checkInDate, checkOutDate ,room.getIdRoom());
+		List<RoomBooking> duplicates1 = bookingDAO.searchForDuplicate1(checkInDate, checkOutDate ,room.getIdRoom());
+		List<RoomBooking> duplicates2 = bookingDAO.searchForDuplicate2(checkInDate, checkOutDate ,room.getIdRoom());
+		if((duplicates.isEmpty() || duplicates == null) && (duplicates1.isEmpty() || duplicates1 == null)&& (duplicates2.isEmpty() || duplicates2 == null)) return true;
+		else return false;
+	}
+	
 	public String saveData() {
 			try {
-			
+				if(validateBooking(roombooking)) {
 			roombooking.setUser(user);
 			roombooking.setRoom(room);
-			
-			
+			roombooking.setCheckInDate(checkInDate);
+			roombooking.setCheckOutDate(checkOutDate);
+			bookingDAO.create(roombooking);
+			}
+			else {
 				
-				
-				
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			"Wybrana data dla tego pokoju jest niedostepna.Wybierz inn¹ date lub pokój", null));
+			return PAGE_STAY_AT_THE_SAME;
+			}
 				
 		
 			
-				bookingDAO.create(roombooking);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

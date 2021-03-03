@@ -23,7 +23,7 @@ public class UserListBB {
 	private static final String PAGE_USER_EDIT = "userEdit?faces-redirect=true";
 	private static final String PAGE_USER_ADD = "userAdd?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-
+	private static final String PAGE_PASSWORD_EDIT = "userPasswordEdit?faces-redirect=true";
 	private String name;
 		
 	@Inject
@@ -73,6 +73,12 @@ public class UserListBB {
 		flash.put("user", user);
 		
 		return PAGE_USER_EDIT;
+	}
+public String passwordUserEdit(User user){
+		
+		flash.put("user", user);
+		
+		return PAGE_PASSWORD_EDIT;
 	}
 
 	public String deleteUser(User user){

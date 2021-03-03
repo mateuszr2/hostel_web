@@ -45,7 +45,7 @@
 		<p:commandButton value="Dodaj nowy pokój"
 			action="#{roomsListBB.newRoom()}" style="margin-bottom:1em;"/>
 
-		<p:dataTable value="#{roomsListBB.list}" var="p">
+		<p:dataTable value="#{roomsListBB.list}" var="p" paginator="true">
 
 			<p:column priority="5">
 				<f:facet name="header">

@@ -3,6 +3,7 @@ package com.jsfproject.user;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -65,7 +66,13 @@ public class UserEditBB implements Serializable {
 		}
 
 	}
-
+	
+	public boolean validateUser(User user) {
+		List<User> duplicates = userDAO.searchForDuplicate(user.getLogin(), user.getEmail());
+		if(duplicates.isEmpty() || duplicates == null) return true;
+		else return false;
+	}
+	
 	public String saveData() {
 		
 		session = (HttpSession) context.getExternalContext().getSession(false);
@@ -73,11 +80,12 @@ public class UserEditBB implements Serializable {
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
-
+		
 		try {
+			
 			if (user.getUserId() == null) {
 				
-				
+				if(validateUser(user)) {
 				PasswordEncode pa = new PasswordEncode();
 				user.setPassword(pa.hash(user.getPassword().toCharArray()));
 				Date data = new Date();
@@ -87,7 +95,12 @@ public class UserEditBB implements Serializable {
 				actionlog.setLog("dodanie nowego administratora o loginie: " + user.getLogin());
 				actionlog.setDatetime(data);
 				logDAO.create(actionlog);
-				
+				}
+				else {
+				context.addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Podany login lub email jest ju¿ zajety!", null));
+					return PAGE_STAY_AT_THE_SAME;
+				}
 			} else {
 				
 				userDAO.merge(user);
@@ -97,6 +110,7 @@ public class UserEditBB implements Serializable {
 				logDAO.create(actionlog);
 				
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,

@@ -31,10 +31,11 @@ public class HostelBB {
 	private static final String LOGIN_PAGE = "public/login.xhtml";
 	private static final String LOGIN_LINK_REGISTRATION = "../public/login.xhtml";
 	private static final String PAGE_REGISTRATION = "public/register.xhtml";
-	private static final String PAGE_ROOMS_LIST = "roomsAvailableList.xhtml";
+	private static final String PAGE_ROOMS_LIST = "roomsList.xhtml";
 	private static final String PAGE_BOOKING_LIST = "bookingList.xhtml";
 	private static final String PAGE_LOG_LIST = "logList.xhtml";
 	private static final String PAGE_ACCOUNT = "account.xhtml";
+	private static final String PAGE_ROOMSBOOKING_LIST = "roomsAvailableList.xhtml";
 	public String homePage() {
 		return PAGE_HOME;
 	}
@@ -79,6 +80,9 @@ public class HostelBB {
 	}
 	public String accountPage() {
 		return PAGE_ACCOUNT;
+	}
+	public String roomsListBookingPage() {
+		return PAGE_ROOMSBOOKING_LIST;
 	}
 
 }

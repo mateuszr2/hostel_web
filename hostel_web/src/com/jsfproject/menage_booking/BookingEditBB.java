@@ -2,6 +2,7 @@ package com.jsfproject.menage_booking;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -38,6 +39,25 @@ public class BookingEditBB implements Serializable {
 	public RoomBooking getRoomBooking() {
 		return roombooking;
 	}
+	public Date getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+	
+	private Date checkInDate;
+	
+	public Date getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+	
+	private Date checkOutDate;
 
 	public void onLoad() throws IOException {
 
@@ -63,13 +83,11 @@ public class BookingEditBB implements Serializable {
 		}
 
 		try {
-			if (roombooking.getBookingId() == null) {
-				
-				bookingDAO.create(roombooking);
-			} else {
-				
-				bookingDAO.merge(roombooking);
-			}
+		
+			roombooking.setCheckInDate(checkInDate);
+			roombooking.setCheckOutDate(checkOutDate);	
+		bookingDAO.merge(roombooking);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,

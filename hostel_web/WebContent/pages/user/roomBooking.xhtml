@@ -22,18 +22,18 @@
 		<h:form rendered="#{roomsAvailableBookingBB.room != null}">
 			
 			<h:panelGrid columns="3" cellpadding="5">
-		Rezerwacja pokoju: #{roomsAvailableBookingBB.room.roomNo}
+		Rezerwacja pokoju: #{roomsAvailableBookingBB.room.idRoom}
 		
 			<div class="p-field p-col-12 p-md-4">
                 <p:outputLabel for="checkInDate" value="Data rozpoczęcia"/>
-                <p:datePicker id="checkInDate" value="#{roomsAvailableBookingBB.roombooking.checkInDate}"
+                <p:datePicker id="checkInDate" value="#{roomsAvailableBookingBB.checkInDate}"
                 required="true" requiredMessage="Podaj datę rozpoczęcia">
                 </p:datePicker>
             </div>
             
             <div class="p-field p-col-12 p-md-4">
                 <p:outputLabel for="checkOutDate" value="Data zakończenia"/>
-                <p:datePicker id="checkOutDate" value="#{roomsAvailableBookingBB.roombooking.checkOutDate}" 
+                <p:datePicker id="checkOutDate" value="#{roomsAvailableBookingBB.checkOutDate}" 
                 requiredMessage="Podaj datę zakończenia"/>
             </div>
 			
