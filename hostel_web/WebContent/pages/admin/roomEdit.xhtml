@@ -17,7 +17,7 @@
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
-	<p:panel toggleable="true" header="Zarządzanie pokojami">
+Zarządzanie pokojami:
 
 		<h:form rendered="#{roomEditBB.room != null}">
 			<h:panelGrid columns="3" cellpadding="5">
@@ -50,13 +50,20 @@
           			</f:facet>
       		 </p:selectOneMenu>
       		 
+    
+      		 
       		   <br>
 			  <h:outputLabel for="p-description" value="opis:" />
 			  <p:inputTextarea id="p-description" value="#{roomEditBB.room.description}" rows="5" cols="30" counter="display" maxlength="1000" counterTemplate="pozostało znaków: {0}" autoResize="false" />
     			<h:outputText id="display" />
     			 </br>
-		
-		
+			  		 <h:outputLabel for="p-image" value="zdjęcie:" />
+				<p:inputText id="p-image" value="#{roomEditBB.room.image}"
+					required="true" requiredMessage="Wprowadz nazwe zdjęcia">
+					
+				</p:inputText>
+				<p:message for="p-image" display="icon"/>
+			
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
@@ -67,7 +74,7 @@
 			<p:button value="Anuluj" outcome="roomsList" />
 		</h:form>
 
-	</p:panel>
+
 
 </h:body>
 

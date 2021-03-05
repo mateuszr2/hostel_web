@@ -15,15 +15,17 @@ import javax.servlet.http.HttpSession;
 
 import com.jsf.dao.BookingDAO;
 import com.jsf.dao.RoomDAO;
+import com.jsf.dao.UserDAO;
 import jpa_entities.RoomBooking;
 import jpa_entities.Room;
+import jpa_entities.User;
 
 @Named
 @RequestScoped
 public class BookingListBB {
 	private static final String PAGE_BOOKING_EDIT = "bookingEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-
+	private String name;
 	
 	private int bookingId;
 	@Inject
@@ -36,6 +38,8 @@ public class BookingListBB {
 	BookingDAO bookingDAO;
 	@EJB
 	RoomDAO roomDAO;
+	@EJB
+	UserDAO userDAO;
 
 	public int getBookingId() {
 		return bookingId;
@@ -48,7 +52,16 @@ public class BookingListBB {
 	public List<RoomBooking> getFullList(){
 		return bookingDAO.getFullList();
 	}
+	
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
 	public List<RoomBooking> getList(){
 		List<RoomBooking> list = null;
 		
@@ -56,7 +69,12 @@ public class BookingListBB {
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
 	
+		if (name != null && name.length() > 0){
+			searchParams.put("name", name);
+		}
 		
+		
+	
 		
 		list = bookingDAO.getList(searchParams);
 		

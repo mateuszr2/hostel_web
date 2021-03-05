@@ -36,6 +36,8 @@ public class HostelBB {
 	private static final String PAGE_LOG_LIST = "logList.xhtml";
 	private static final String PAGE_ACCOUNT = "account.xhtml";
 	private static final String PAGE_ROOMSBOOKING_LIST = "roomsAvailableList.xhtml";
+	private static final String PAGE_BOOKING_USER_LIST = "bookingList.xhtml";
+	private static final String PAGE_PUBLIC_ROOM_LIST = "roomsAvailableList.xhtml";
 	public String homePage() {
 		return PAGE_HOME;
 	}
@@ -84,5 +86,10 @@ public class HostelBB {
 	public String roomsListBookingPage() {
 		return PAGE_ROOMSBOOKING_LIST;
 	}
-
+	public String bookingUserList() {
+		return PAGE_BOOKING_USER_LIST;
+	}
+	public String roomListPublic() {
+		return PAGE_PUBLIC_ROOM_LIST;
+	}
 }

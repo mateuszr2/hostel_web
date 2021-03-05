@@ -16,11 +16,11 @@
 		<div id="header">
 		<ui:insert name="menu">
 			<div id="menu" class="box bottom-space">
-				<ui:include src="/templates/menu-snippet-admin.xhtml" />
+				<ui:include src="/templates/menu-snippet-user.xhtml" />
 			</div>
 		</ui:insert>
 		</div>
-		<h3>Zarządzanie rezerwacjami</h3>
+		<h3>Twoje rezerwacje</h3>
 		<center>
 		<h:form>
 		
@@ -42,53 +42,47 @@
 
 		
 
-		<p:dataTable value="#{bookingListBB.list}" var="p">
+		<p:dataTable value="#{bookingUserListBB.getBookingUserList()}" var="b">
 
 			<p:column priority="5">
 				<f:facet name="header">
 					<h:outputText value="data rozpoczęcia" />
 				</f:facet>
-				<h:outputText value="#{p.checkInDate}" />
+				<h:outputText value="#{b.checkInDate}" />
 			</p:column>
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="data zakończenia" />
 				</f:facet>
-				<h:outputText value="#{p.checkOutDate}" />
+				<h:outputText value="#{b.checkOutDate}" />
 			</p:column>
-
-		<p:column>
-				<f:facet name="header">
-					<h:outputText value="imie i nazwisko" />
-				</f:facet>
-				<h:outputText value="#{p.user.name}" />
-			</p:column>
-
-		  <p:column>
-				<f:facet name="header">
-					<h:outputText value="numer pokoju" />
-				</f:facet>
-				<h:outputText value="#{p.room.roomNo}" />
-		  </p:column> 
-
-		 
-			
-		
-			
- 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="opcje" />
+					<h:outputText value="Numer pokoju" />
 				</f:facet>
-
-				<p:commandButton value="Zmień daty"
-					action="#{bookingListBB.editRoomBooking(p)}" />
-
-				<p:commandButton value="Zakończ / Anuluj"
-					action="#{bookingListBB.deleteRoomBooking(p)}" update="@form" />
-
-				
+				<h:outputText value="#{b.room.roomNo}" />
 			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Typ pokoju" />
+				</f:facet>
+				<h:outputText value="#{b.room.type}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cena za dzień" />
+				</f:facet>
+				<h:outputText value="#{b.room.price}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Opis" />
+				</f:facet>
+				<h:outputText value="#{b.room.description}" />
+			</p:column>
+		
+
+		 
 
 		</p:dataTable>
 	</h:form>
