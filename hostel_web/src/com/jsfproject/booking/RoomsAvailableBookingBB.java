@@ -124,8 +124,8 @@ public class RoomsAvailableBookingBB implements Serializable {
 	public boolean validateBooking(RoomBooking roombooking) {
 		List<RoomBooking> duplicates = bookingDAO.searchForDuplicate(checkInDate, checkOutDate ,room.getIdRoom());
 		List<RoomBooking> duplicates1 = bookingDAO.searchForDuplicate1(checkInDate, checkOutDate ,room.getIdRoom());
-		List<RoomBooking> duplicates2 = bookingDAO.searchForDuplicate2(checkInDate, checkOutDate ,room.getIdRoom());
-		if((duplicates.isEmpty() || duplicates == null) && (duplicates1.isEmpty() || duplicates1 == null)&& (duplicates2.isEmpty() || duplicates2 == null)) return true;
+		//List<RoomBooking> duplicates2 = bookingDAO.searchForDuplicate2(checkInDate, checkOutDate ,room.getIdRoom());
+		if((duplicates.isEmpty() || duplicates == null) && (duplicates1.isEmpty() || duplicates1 == null)) return true;
 		else return false;
 	}
 	
